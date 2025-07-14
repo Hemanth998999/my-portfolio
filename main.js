@@ -1,7 +1,7 @@
 // Typed.js initialization for dynamic text
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize EmailJS (replace with your EmailJS public key)
-    emailjs.init("p6pDpPyrQjuAOhMiR"); // Get this from https://www.emailjs.com/
+    emailjs.init("YOUR_PUBLIC_KEY"); // Get this from https://www.emailjs.com/
     
     // Initialize typed text animation
     const typed = new Typed('.text', {
@@ -124,8 +124,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // EmailJS send (replace with your service details)
             emailjs.send(
-                'service_3fxtc73',    // Replace with your EmailJS service ID
-                'template_0zheaqd',   // Replace with your EmailJS template ID
+                'YOUR_SERVICE_ID',    // Replace with your EmailJS service ID
+                'YOUR_TEMPLATE_ID',   // Replace with your EmailJS template ID
                 {
                     from_name: name,
                     from_email: email,
@@ -207,12 +207,43 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(card);
     });
 
-    // Add loading animation to buttons
+    // Add loading animation to buttons and handle navigation
     const buttons = document.querySelectorAll('.btn-box');
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
-            if (this.type !== 'submit') {
+            // Handle different button types
+            if (this.type === 'submit') {
+                // Let form submission handle this
+                return;
+            }
+            
+            if (this.classList.contains('download-resume')) {
+                // Let downloadResume function handle this
+                return;
+            }
+            
+            // Handle navigation buttons
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
                 e.preventDefault();
+                const targetSection = document.querySelector(href);
+                if (targetSection) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active navigation link
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === href) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
             }
             
             // Add ripple effect
@@ -292,20 +323,68 @@ function downloadResume(event) {
     button.innerHTML = '<i class="bx bx-loader bx-spin"></i> Preparing...';
     
     setTimeout(() => {
-        // You can replace this with actual resume file URL
-        alert('Resume download would start here. Please add your actual resume file to the project and update the download link.');
+        // Check if resume file exists
+        const resumeFileName = 'Hemanth Resume.pdf';
+        const link = document.createElement('a');
+        link.href = resumeFileName;
+        link.download = resumeFileName;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        
+        // Try to download the file
+        try {
+            link.click();
+            // Show success message
+            showNotification('Resume download started!', 'success');
+        } catch (error) {
+            // Show error message if file not found
+            showNotification('Resume file not found. Please add "Hemanth Resume.pdf" to your project root folder.', 'error');
+        }
+        
+        document.body.removeChild(link);
         button.innerHTML = originalText;
-    }, 1500);
+    }, 1000);
     
-    // Uncomment and modify this section when you have an actual resume file:
-    /*
-    const link = document.createElement('a');
-    link.href = 'path/to/your/resume.pdf'; // Replace with actual path
-    link.download = 'Hemanth_Yembuluri_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    */
+}
+
+// Notification function
+function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? 'rgba(0, 255, 0, 0.1)' : 'rgba(255, 0, 0, 0.1)'};
+        border: 1px solid ${type === 'success' ? 'rgba(0, 255, 0, 0.3)' : 'rgba(255, 0, 0, 0.3)'};
+        color: ${type === 'success' ? '#00ff00' : '#ff6b6b'};
+        padding: 15px 20px;
+        border-radius: 10px;
+        z-index: 1000;
+        font-weight: 500;
+        max-width: 300px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 4 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 4000);
 }
 
 // Certificate modal functions
