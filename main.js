@@ -236,14 +236,14 @@ function downloadResume(event) {
     }, 1500);
     
     // Uncomment and modify this section when you have an actual resume file:
-    /*
+    
     const link = document.createElement('a');
-    link.href = 'path/to/your/resume.pdf'; // Replace with actual path
-    link.download = 'Hemanth_Yembuluri_Resume.pdf';
+    link.href = './'; // Replace with actual path
+    link.download = 'Hemanth Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    */
+    
 }
 
 // Certificate modal functions
