@@ -1,8 +1,11 @@
 // Typed.js initialization for dynamic text
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS (replace with your EmailJS public key)
+    emailjs.init("p6pDpPyrQjuAOhMiR"); // Get this from https://www.emailjs.com/
+    
     // Initialize typed text animation
     const typed = new Typed('.text', {
-        strings: ['Software Engineer', 'Data Scientist', 'AI/ML Enthusiast', 'Data Analyst', 'DL Engineer' ],
+        strings: ['Software Engineer', 'Data Scientist', 'AI/ML Enthusiast', 'Data Analyst', 'DL Engineer'],
         typeSpeed: 100,
         backSpeed: 100,
         backDelay: 1000,
@@ -58,43 +61,102 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Contact form submission
-    const contactForm = document.querySelector('.contact-form form');
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbar = document.getElementById('navbar');
+    
+    if (menuToggle && navbar) {
+        menuToggle.addEventListener('click', function() {
+            navbar.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (navbar.classList.contains('active')) {
+                icon.classList.remove('bx-menu');
+                icon.classList.add('bx-x');
+            } else {
+                icon.classList.remove('bx-x');
+                icon.classList.add('bx-menu');
+            }
+        });
+        
+        // Close mobile menu when clicking a nav link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navbar.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('bx-x');
+                icon.classList.add('bx-menu');
+            });
+        });
+    }
+
+    // Contact form submission with EmailJS
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+    
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Get form data
             const formData = new FormData(this);
-            const name = this.querySelector('input[type="text"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const subject = this.querySelector('input[placeholder="Subject"]').value;
-            const message = this.querySelector('textarea').value;
+            const name = formData.get('user_name');
+            const email = formData.get('user_email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
             
             // Simple validation
             if (!name || !email || !subject || !message) {
-                alert('Please fill in all fields');
+                showFormStatus('Please fill in all fields', 'error');
                 return;
             }
             
             if (!isValidEmail(email)) {
-                alert('Please enter a valid email address');
+                showFormStatus('Please enter a valid email address', 'error');
                 return;
             }
             
-            // Simulate form submission
-            const submitButton = this.querySelector('.btn-box');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Sending...';
-            submitButton.style.pointerEvents = 'none';
+            // Show loading state
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            showFormStatus('Sending your message...', 'loading');
             
-            setTimeout(() => {
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-                submitButton.textContent = originalText;
-                submitButton.style.pointerEvents = 'auto';
-            }, 2000);
+            // EmailJS send (replace with your service details)
+            emailjs.send(
+                'service_3fxtc73',    // Replace with your EmailJS service ID
+                'template_0zheaqd',   // Replace with your EmailJS template ID
+                {
+                    from_name: name,
+                    from_email: email,
+                    subject: subject,
+                    message: message,
+                    to_email: 'hemanthyembuluri777@gmail.com'
+                }
+            ).then(function(response) {
+                showFormStatus('✅ Thank you! Your message has been sent successfully. I will get back to you soon.', 'success');
+                contactForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }).catch(function(error) {
+                console.error('EmailJS Error:', error);
+                showFormStatus('❌ Sorry, there was an error sending your message. Please try again or contact me directly at hemanthyembuluri777@gmail.com', 'error');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         });
+    }
+    
+    function showFormStatus(message, type) {
+        formStatus.textContent = message;
+        formStatus.className = `form-status ${type}`;
+        formStatus.style.display = 'block';
+        
+        if (type === 'success') {
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 5000);
+        }
     }
 
     // Email validation function
@@ -236,14 +298,14 @@ function downloadResume(event) {
     }, 1500);
     
     // Uncomment and modify this section when you have an actual resume file:
-    
+    /*
     const link = document.createElement('a');
-    link.href = './'; // Replace with actual path
-    link.download = 'Hemanth Resume.pdf';
+    link.href = 'path/to/your/resume.pdf'; // Replace with actual path
+    link.download = 'Hemanth_Yembuluri_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+    */
 }
 
 // Certificate modal functions
