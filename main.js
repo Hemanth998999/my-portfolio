@@ -1,7 +1,7 @@
 // Typed.js initialization for dynamic text
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize EmailJS (replace with your EmailJS public key)
-    emailjs.init("YOUR_PUBLIC_KEY"); // Get this from https://www.emailjs.com/
+    emailjs.init("p6pDpPyrQjuAOhMiR"); // Get this from https://www.emailjs.com/
     
     // Initialize typed text animation
     const typed = new Typed('.text', {
@@ -124,8 +124,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // EmailJS send (replace with your service details)
             emailjs.send(
-                'YOUR_SERVICE_ID',    // Replace with your EmailJS service ID
-                'YOUR_TEMPLATE_ID',   // Replace with your EmailJS template ID
+                'service_3fxtc73',    // Replace with your EmailJS service ID
+                'template_0zheaqd',   // Replace with your EmailJS template ID
                 {
                     from_name: name,
                     from_email: email,
