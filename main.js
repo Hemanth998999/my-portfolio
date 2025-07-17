@@ -1,7 +1,7 @@
 // Typed.js initialization for dynamic text
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize EmailJS (replace with your EmailJS public key)
-    emailjs.init("p6pDpPyrQjuAOhMiR"); // Get this from https://www.emailjs.com/
+    // Initialize EmailJS with your credentials
+    emailjs.init("p6pDpPyrQjuAOhMiR");
     
     // Initialize typed text animation
     const typed = new Typed('.text', {
@@ -122,10 +122,10 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
             showFormStatus('Sending your message...', 'loading');
             
-            // EmailJS send (replace with your service details)
+            // EmailJS send with your credentials
             emailjs.send(
-                'service_3fxtc73',    // Replace with your EmailJS service ID
-                'template_0zheaqd',   // Replace with your EmailJS template ID
+                'service_3fxtc73',    // Your EmailJS service ID
+                'template_0zheaqd',   // Your EmailJS template ID
                 {
                     from_name: name,
                     from_email: email,

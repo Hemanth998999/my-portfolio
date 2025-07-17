@@ -281,8 +281,10 @@ section {
 .about-text p {
   color: #ededed;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.8;
   margin-bottom: 2rem;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .about-buttons {
