@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 html {
@@ -61,7 +61,7 @@ body {
 }
 
 .navbar a::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -201,11 +201,8 @@ body {
 }
 
 .btn-box:hover {
-  box-shadow: 0 0 5px cyan,
-              0 0 25px cyan,
-              0 0 50px cyan,
-              0 0 100px cyan,
-              0 0 200px cyan;
+  box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan,
+    0 0 200px cyan;
   transform: translateY(-3px);
 }
 
@@ -396,7 +393,7 @@ section {
 }
 
 .certificate-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -442,7 +439,7 @@ section {
 }
 
 .certificate-card:hover::after {
-  content: 'Click to view full size';
+  content: "Click to view full size";
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -468,6 +465,16 @@ section {
   font-weight: 500;
   font-size: 14px;
   display: block;
+  margin-bottom: 5px;
+}
+
+.certificate-card .certificate-date {
+  color: #ededed;
+  font-weight: 400;
+  font-size: 12px;
+  display: block;
+  opacity: 0.8;
+  font-style: italic;
 }
 
 /* Portfolio Section */
@@ -734,23 +741,23 @@ section {
   .header {
     padding: 2rem 3%;
   }
-  
+
   section {
     padding: 10rem 3% 2rem;
   }
-  
+
   .home {
     padding: 0 3% 2rem;
     flex-direction: column;
     text-align: center;
   }
-  
+
   .home-img {
     width: 300px;
     height: 300px;
     margin-top: 30px;
   }
-  
+
   .contact-content {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -761,63 +768,63 @@ section {
   .header {
     padding: 2rem 5%;
   }
-  
+
   .navbar a {
     font-size: 16px;
     margin-left: 20px;
   }
-  
+
   .home-content h1 {
     font-size: 40px;
   }
-  
+
   .home-img {
     width: 250px;
     height: 250px;
     margin-top: 20px;
   }
-  
+
   .profile-logo {
     width: 250px;
     height: 250px;
   }
-  
+
   .about {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  
+
   .about-text h2 {
     font-size: 40px;
   }
-  
+
   .section-title {
     font-size: 40px;
   }
-  
+
   .skills-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
   }
-  
+
   .portfolio-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .form-group {
     grid-template-columns: 1fr;
   }
-  
+
   .about-buttons {
     flex-direction: column;
     gap: 15px;
   }
-  
+
   .certificates-grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
   }
-  
+
   .certificate-image {
     height: 150px;
   }
@@ -919,11 +926,11 @@ section {
   .header {
     padding: 15px 5%;
   }
-  
+
   .menu-toggle {
     display: block;
   }
-  
+
   .navbar {
     position: fixed;
     top: 70px;
@@ -939,11 +946,11 @@ section {
     transition: left 0.3s ease;
     z-index: 99;
   }
-  
+
   .navbar.active {
     left: 0;
   }
-  
+
   .navbar a {
     font-size: 20px;
     margin: 20px 0;
@@ -951,14 +958,14 @@ section {
     transform: translateX(-50px);
     transition: all 0.3s ease;
   }
-  
+
   .navbar.active a {
     opacity: 1;
     transform: translateX(0);
     animation: slideInFromLeft 0.5s ease forwards;
     animation-delay: calc(0.1s * var(--i));
   }
-  
+
   @keyframes slideInFromLeft {
     from {
       opacity: 0;
@@ -969,7 +976,7 @@ section {
       transform: translateX(0);
     }
   }
-  
+
   .home {
     flex-direction: column;
     text-align: center;
@@ -977,106 +984,106 @@ section {
     height: auto;
     min-height: 100vh;
   }
-  
+
   .home-content {
     max-width: 100%;
     margin-bottom: 50px;
   }
-  
+
   .home-content h1 {
     font-size: 40px;
   }
-  
+
   .home-content h3 {
     font-size: 26px;
   }
-  
+
   .home-content p {
     font-size: 18px;
   }
-  
+
   .home-img {
     width: 300px;
     height: 300px;
     margin: 0 auto;
   }
-  
+
   .about {
     flex-direction: column;
     text-align: center;
     padding: 80px 5%;
   }
-  
+
   .about-img {
     margin-bottom: 50px;
   }
-  
+
   .profile-logo {
     width: 250px;
     height: 250px;
     margin: 0 auto;
   }
-  
+
   .about-text {
     max-width: 100%;
   }
-  
+
   .about-text h2 {
     font-size: 36px;
   }
-  
+
   .about-text h4 {
     font-size: 20px;
   }
-  
+
   .about-text p {
     font-size: 16px;
     line-height: 1.6;
   }
-  
+
   .about-buttons {
     flex-direction: column;
     gap: 20px;
     align-items: center;
   }
-  
+
   .skills-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
   }
-  
+
   .certificates-grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
   }
-  
+
   .portfolio-grid {
     grid-template-columns: 1fr;
     gap: 25px;
   }
-  
+
   .contact-content {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+
   .contact-info {
     order: 2;
   }
-  
+
   .contact-form {
     order: 1;
   }
-  
+
   .form-group {
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .section {
     padding: 80px 5%;
   }
-  
+
   .section-title {
     font-size: 36px;
     margin-bottom: 50px;
@@ -1087,89 +1094,89 @@ section {
   .header {
     padding: 1.5rem 5%;
   }
-  
+
   .navbar a {
     font-size: 18px;
     margin: 15px 0;
   }
-  
+
   .home-content h1 {
     font-size: 32px;
   }
-  
+
   .home-content h3 {
     font-size: 20px;
   }
-  
+
   .home-content p {
     font-size: 16px;
   }
-  
+
   .home-img {
     width: 250px;
     height: 250px;
   }
-  
+
   .section-title {
     font-size: 28px;
   }
-  
+
   .about-text h2 {
     font-size: 28px;
   }
-  
+
   .about-text h4 {
     font-size: 18px;
   }
-  
+
   .about-text p {
     font-size: 14px;
   }
-  
+
   .profile-logo {
     width: 200px;
     height: 200px;
   }
-  
+
   .skills-grid {
     grid-template-columns: 1fr;
     gap: 15px;
   }
-  
+
   .skill-card {
     padding: 20px;
   }
-  
+
   .skill-card h4 {
     font-size: 14px;
   }
-  
+
   .certificates-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .certificate-card {
     padding: 20px;
   }
-  
+
   .contact-item {
     padding: 20px;
     flex-direction: column;
     text-align: center;
     gap: 10px;
   }
-  
+
   .contact-item i {
     font-size: 24px;
   }
-  
+
   .form-group input,
   .contact-form input,
   .contact-form textarea {
     font-size: 16px; /* Prevents zoom on iOS */
   }
-  
+
   .btn-box {
     padding: 12px 24px;
     font-size: 14px;
